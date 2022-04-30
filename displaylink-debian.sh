@@ -19,6 +19,7 @@ IFS=$'\n\t'
 
 # define the version to get as the latest available version
 version=`wget -q -O - https://www.synaptics.com/products/displaylink-graphics/downloads/ubuntu | grep "<p>Release: " | head -n 1 | perl -pe '($_)=/([0-9]+([.][0-9]+)+)/'`
+version=5.4
 # define download url to be the correct version
 dlurl="https://www.synaptics.com/$(wget -q -O - https://www.synaptics.com/products/displaylink-graphics/downloads/ubuntu | grep 'class="download-link"' | head -n 1 | perl -pe '($_)=/<a href="\/([^"]+)"[^>]+class="download-link"/')"
 driver_url="https://www.synaptics.com/$(wget -q -O - ${dlurl} | grep '<a class="no-link"' | head -n 1 | perl -pe '($_)=/href="\/([^"]+)"/')"
@@ -387,7 +388,7 @@ ACCEPT=${ACCEPT:-$default}
 case $ACCEPT in
 		y*|Y*)
 				echo -e "\nDownloading DisplayLink Ubuntu driver:\n"
-				wget -O DisplayLink_Ubuntu_${version}.zip "${driver_url}"
+				# wget -O DisplayLink_Ubuntu_${version}.zip "${driver_url}"
 				# make sure file is downloaded before continuing
 				if [ $? -ne 0 ]
 				then
